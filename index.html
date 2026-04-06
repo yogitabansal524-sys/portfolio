@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yogita | Professional Web Designer & MLT Specialist</title>
+<meta name="description" content="Modern portfolio of Yogita showcasing web design expertise and Medical Laboratory Technology skills.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --accent: #8b5cf6;
+  --accent-hover: #7c3aed;
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.1);
+  --shadow-lg: 0 20px 50px rgba(139,92,246,0.15);
+  --radius: 16px;
+  --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --border: #334155;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+  font-family: 'Inter', sans-serif; 
+  line-height: 1.6; 
+  color: var(--text-primary); 
+  background: var(--bg-primary); 
+  overflow-x: hidden; 
+  scroll-behavior: smooth; 
+}
+body.loaded { opacity: 1; }
+
+.loading { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-primary); display: flex; align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s; }
+.loading.hidden { opacity: 0; pointer-events: none; }
+
+header { 
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  background: rgba(255,255,255,0.95); 
+  backdrop-filter: blur(20px); 
+  border-bottom: 1px solid var(--border); 
+  z-index: 1000; 
+  transition: var(--transition);
+}
+[data-theme="dark"] header { background: rgba(30,41,59,0.95); }
+nav { 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 1rem 5%; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
+.logo { 
+  font-family: 'Poppins', sans-serif; 
+  font-size: 1.5rem; 
+  font-weight: 700; 
+  background: linear-gradient(135deg, var(--accent), #ec4899); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+.nav-links { 
+  display: flex; 
+  gap: 2rem; 
+  list-style: none; 
+}
+.nav-links a { 
+  text-decoration: none; 
+  color: var(--text-secondary); 
+  font-weight: 500; 
+  transition: var(--transition); 
+  position: relative; 
+}
+.nav-links a:hover, .nav-links a.active { color: var(--accent); }
+.nav-links a::after { 
+  content: ''; 
+  position: absolute; 
+  bottom: -4px; 
+  left: 0; 
+  width: 0; 
+  height: 2px; 
+  background: var(--accent); 
+  transition: var(--transition); 
+}
+.nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+
+.theme-toggle { 
+  background: none; 
+  border: 1px solid var(--border); 
+  border-radius: 50%; 
+  width: 2.5rem; 
+  height: 2.5rem; 
+  cursor: pointer; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  transition: var(--transition); 
+}
+.theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+.hamburger { 
+  display: none; 
+  flex-direction: column; 
+  gap: 4px; 
+  cursor: pointer; 
+}
+.hamburger span { 
+  width: 24px; 
+  height: 2px; 
+  background: var(--text-primary); 
+  transition: var(--transition); 
+}
+
+section { 
+  padding: 140px 5%; 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  position: relative; 
+}
+section:nth-child(odd) { 
+  background: linear-gradient(135deg, var(--bg-primary), rgba(139,92,246,0.03)); 
+}
+section:nth-child(even) { 
+  background: linear-gradient(135deg, var(--bg-secondary), rgba(139,92,246,0.02)); 
+}
+.section-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z' fill='%238b5cf6' fill-opacity='0.05'%3E%3C/path%3E%3C/svg%3E");
+  background-size: cover;
+}
+h2 { 
+  font-family: 'Poppins', sans-serif; 
+  font-size: clamp(2rem, 4vw, 3rem); 
+  text-align: center; 
+  margin-bottom: 4rem; 
+  background: linear-gradient(135deg, var(--text-primary), var(--text-secondary)); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+
+#home { 
+  min-height: 100vh; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  text-align: center; 
+  background: linear-gradient(135deg, var(--bg-primary), rgba(139,92,246,0.05)); 
+}
+.hero-banner {
+  display: flex;
+  gap: 0;
+  max-width: 600px;
+  height: clamp(250px, 40vw, 400px);
+  margin: 0 auto 3rem auto;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--accent);
+}
+
+.hero-image {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+  loading: lazy;
+}
+
+.hero-image:hover img {
+  transform: scale(1.05);
+}
+
+.hero-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+  z-index: 2;
+}
+
+.lab-side::after {
+  content: 'Lab Expertise';
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  background: rgba(139,92,246,0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.code-side::after {
+  content: 'Web Development';
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(236,72,153,0.9);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+.hero-banner {
+  animation: heroFloat 6s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    flex-direction: column;
+    height: clamp(300px, 50vw, 500px);
+  }
+  .hero-image::before {
+    left: 1rem;
+    width: calc(100% - 2rem);
+    height: 2px;
+    top: 50%;
+  }
+  .lab-side::after {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 1rem;
+  }
+  .code-side::after {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 1rem;
+  }
+}
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+.hero-title { 
+  font-family: 'Poppins', sans-serif; 
+  font-size: clamp(2.5rem, 6vw, 4.5rem); 
+  font-weight: 700; 
+  margin-bottom: 1rem; 
+  line-height: 1.1; 
+}
+.hero-accent {
+  background: linear-gradient(135deg, var(--accent), #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+}
+.hero-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  border-radius: 2px;
+}
+.hero-subtitle { 
+  font-size: 1.3rem; 
+  color: var(--text-secondary); 
+  margin-bottom: 2rem; 
+  max-width: 600px; 
+  margin-left: auto; 
+  margin-right: auto; 
+}
+.cta-buttons { 
+  display: flex; 
+  gap: 1rem; 
+  justify-content: center; 
+  flex-wrap: wrap; 
+}
+.btn { 
+  padding: 14px 28px; 
+  border: none; 
+  border-radius: var(--radius); 
+  font-weight: 600; 
+  text-decoration: none; 
+  display: inline-flex; 
+  align-items: center; 
+  gap: 0.5rem; 
+  transition: var(--transition); 
+  cursor: pointer; 
+  font-size: 1rem; 
+}
+.btn-primary { 
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover)); 
+  color: white; 
+  box-shadow: var(--shadow-md); 
+}
+.btn-primary:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.btn-secondary { 
+  background: transparent; 
+  color: var(--accent); 
+  border: 2px solid var(--accent); 
+}
+.btn-secondary:hover { background: var(--accent); color: white; }
+
+.about-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 4rem; 
+  align-items: center; 
+}
+.about-text { text-align: left; }
+.about-text p { 
+  font-size: 1.1rem; 
+  margin-bottom: 1.5rem; 
+  color: var(--text-secondary); 
+}
+.stats-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+  gap: 2rem; 
+  margin-top: 2rem; 
+}
+.stat { text-align: center; }
+.stat-number { 
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  background: linear-gradient(135deg, var(--accent), #ec4899); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+.experience-timeline { 
+  margin-top: 3rem; 
+}
+.timeline-item { 
+  display: flex; 
+  align-items: flex-start; 
+  gap: 1rem; 
+  margin-bottom: 2rem; 
+  opacity: 0; 
+  transform: translateX(-50px); 
+  animation: slideIn 0.6s forwards; 
+}
+@keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
+.timeline-dot { 
+  width: 12px; 
+  height: 12px; 
+  border-radius: 50%; 
+  background: var(--accent); 
+  flex-shrink: 0; 
+  margin-top: 0.25rem; 
+}
+
+.skills-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+  gap: 2rem; 
+}
+.skill-card { 
+  background: var(--bg-secondary); 
+  padding: 2rem; 
+  border-radius: var(--radius); 
+  border: 1px solid var(--border); 
+  text-align: center; 
+  transition: var(--transition); 
+}
+.skill-card:hover { 
+  transform: translateY(-8px); 
+  box-shadow: var(--shadow-lg); 
+  border-color: var(--accent); 
+}
+.skill-icon { 
+  font-size: 3rem; 
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover)); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+  margin-bottom: 1rem; 
+}
+.skill-progress { 
+  position: relative; 
+  height: 10px; 
+  background: var(--border); 
+  border-radius: 5px; 
+  overflow: hidden; 
+  margin: 1rem 0; 
+}
+.skill-fill { 
+  height: 100%; 
+  background: linear-gradient(90deg, var(--accent), var(--accent-hover)); 
+  border-radius: 5px; 
+  transition: width 2s ease; 
+}
+
+.projects-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+  gap: 2rem; 
+}
+.project-card { 
+  background: var(--bg-secondary); 
+  border-radius: var(--radius); 
+  overflow: hidden; 
+  box-shadow: var(--shadow-md); 
+  transition: var(--transition); 
+  opacity: 0; 
+  transform: translateY(30px); 
+}
+.project-card.animate { animation: fadeUp 0.6s forwards; }
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+.project-img { 
+  width: 100%; 
+  height: 200px; 
+  object-fit: cover; 
+  transition: var(--transition); 
+  loading: lazy;
+}
+.project-card:hover .project-img { transform: scale(1.05); }
+.project-content { padding: 1.5rem; }
+.project-tags { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.tag { 
+  background: var(--accent-glow); 
+  color: var(--accent); 
+  padding: 0.25rem 0.75rem; 
+  border-radius: 20px; 
+  font-size: 0.8rem; 
+  font-weight: 500; 
+}
+
+.contact-grid { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 4rem; 
+}
+.contact-info { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 1.5rem; 
+}
+.info-item { 
+  display: flex; 
+  align-items: center; 
+  gap: 1rem; 
+  padding: 1.5rem; 
+  background: var(--bg-secondary); 
+  border-radius: var(--radius); 
+  border-left: 4px solid var(--accent); 
+  transition: var(--transition); 
+}
+.info-item:hover { transform: translateX(8px); }
+.contact-form { 
+  background: var(--bg-secondary); 
+  padding: 2.5rem; 
+  border-radius: var(--radius); 
+  box-shadow: var(--shadow-md); 
+}
+.form-group { 
+  margin-bottom: 1.5rem; 
+}
+.form-group label { 
+  display: block; 
+  margin-bottom: 0.5rem; 
+  font-weight: 500; 
+}
+.form-group input, .form-group textarea { 
+  width: 100%; 
+  padding: 1rem; 
+  border: 1px solid var(--border); 
+  border-radius: var(--radius); 
+  font-family: inherit; 
+  transition: var(--transition); 
+  background: transparent; 
+}
+.form-group input:focus, .form-group textarea:focus { 
+  outline: none; 
+  border-color: var(--accent); 
+  box-shadow: 0 0 0 3px rgba(139,92,246,0.1); 
+}
+.form-row { display: flex; gap: 1rem; }
+.form-row .form-group { flex: 1; }
+#form-message { 
+  margin-top: 1rem; 
+  padding: 1rem; 
+  border-radius: var(--radius); 
+  display: none; 
+}
+
+footer { 
+  text-align: center; 
+  padding: 3rem 5%; 
+  color: var(--text-secondary); 
+  border-top: 1px solid var(--border); 
+}
+.social-links { 
+  display: flex; 
+  gap: 1rem; 
+  justify-content: center; 
+  margin: 1rem 0; 
+}
+.social-links a { 
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50%; 
+  background: var(--accent); 
+  color: white; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  transition: var(--transition); 
+}
+.social-links a:hover { 
+  transform: translateY(-4px) scale(1.1); 
+  box-shadow: var(--shadow-lg); 
+}
+
+#back-to-top { 
+  position: fixed; 
+  bottom: 2rem; 
+  right: 2rem; 
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50%; 
+  background: var(--accent); 
+  color: white; 
+  border: none; 
+  cursor: pointer; 
+  display: none; 
+  align-items: center; 
+  justify-content: center; 
+  box-shadow: var(--shadow-md); 
+  transition: var(--transition); 
+}
+#back-to-top.show { display: flex; }
+#back-to-top:hover { transform: translateY(-4px); }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+  .nav-links { 
+    position: fixed; 
+    top: 100%; 
+    left: 0; 
+    width: 100%; 
+    background: var(--bg-secondary); 
+    flex-direction: column; 
+    padding: 2rem; 
+    gap: 1rem; 
+    transform: translateY(-100%); 
+    opacity: 0; 
+    pointer-events: none; 
+  }
+  .nav-links.active { 
+    transform: translateY(0); 
+    opacity: 1; 
+    pointer-events: all; 
+  }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .cta-buttons { flex-direction: column; align-items: center; }
+}
+
+/* Modal */
+.modal { 
+  display: none; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background: rgba(0,0,0,0.7); 
+  backdrop-filter: blur(10px); 
+  z-index: 2000; 
+  align-items: center; 
+  justify-content: center; 
+  opacity: 0; 
+  transition: opacity 0.3s; 
+}
+.modal.show { display: flex; opacity: 1; }
+.modal-content { 
+  background: var(--bg-secondary); 
+  padding: 3rem; 
+  border-radius: var(--radius); 
+  max-width: 90%; 
+  max-height: 90%; 
+  overflow-y: auto; 
+  position: relative; 
+  transform: scale(0.8); 
+  transition: var(--transition); 
+}
+.modal.show .modal-content { transform: scale(1); }
+.close-modal { 
+  position: absolute; 
+  top: 1rem; 
+  right: 1.5rem; 
+  background: none; 
+  border: none; 
+  font-size: 1.5rem; 
+  cursor: pointer; 
+  color: var(--text-secondary); 
+}
+</style>
+</head>
+<body>
+<div class="loading" id="loading">
+  <div style="font-size: 1.5rem;">Loading...</div>
+</div>
+
+<header>
+  <nav>
+    <div class="logo">Yogita</div>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="theme-toggle" title="Toggle Theme">
+      <i class="fas fa-moon"></i>
+    </button>
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+</header>
+
+<section id="home">
+  <div class="hero-banner">
+    <div class="hero-image lab-side">
+      <img src="tubes.png" alt="Medical Test Tubes & Lab Equipment" loading="lazy">
+    </div>
+    <div class="hero-image code-side">
+      <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop" alt="Web Development - Laptop Coding" loading="lazy">
+    </div>
+  </div>
+<h1 class="hero-title" data-typewriter>Hello, I'm <span class="hero-accent">Yogita</span></h1>
+  <p class="hero-subtitle">Bridging Healthcare & Technology</p>
+  <div class="cta-buttons">
+    <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
+    <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope"></i> Get In Touch</a>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm Yogita, a passionate developer blending creative web design with medical laboratory expertise. From building responsive websites to mastering clinical procedures like hematology analysis and microbiology testing.</p>
+      <p>Currently enhancing my skills in modern frameworks while applying MLT knowledge in real-world diagnostics. Let's create something amazing together!</p>
+      
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="stat-number" data-target="5">0</div>
+          <div>Projects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="1">0</div>
+          <div>Years Exp</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-target="100">0</div>
+          <div>+ Clients</div>
+        </div>
+      </div>
+
+      <div class="experience-timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>MLT Specialist</h4>
+            <p>Hands-on experience in urine/stool examination, blood collection & lab protocols.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div>
+            <h4>Web Developer</h4>
+            <p>Building modern, responsive sites with HTML/CSS/JS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <img src="https://picsum.photos/400/500?random=2" alt="Yogita working" style="width: 100%; border-radius: var(--radius); box-shadow: var(--shadow-lg);" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2>Skills & Expertise</h2>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fab fa-html5"></i></div>
+      <h3>HTML/CSS</h3>
+      <div class="skill-progress"><div class="skill-fill" data-width="95%"></div></div>
+      <span>95%</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fab fa-js-square"></i></div>
+      <h3>JavaScript</h3>
+      <div class="skill-progress"><div class="skill-fill" data-width="80%"></div></div>
+      <span>80%</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-vial"></i></div>
+      <h3>Urine Analysis</h3>
+      <div class="skill-progress"><div class="skill-fill" data-width="85%"></div></div>
+      <span>85%</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-microscope"></i></div>
+      <h3>Stool Exam</h3>
+      <div class="skill-progress"><div class="skill-fill" data-width="75%"></div></div>
+      <span>75%</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-droplet"></i></div>
+      <h3>Blood Collection</h3>
+      <div class="skill-progress"><div class="skill-fill" data-width="90%"></div></div>
+      <span>90%</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+      <h3>Lab Reporting</h3>
+      <div class="skill-progress"><div class="skill-fill" data-width="88%"></div></div>
+      <span>88%</span>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Featured Projects</h2>
+  <div class="projects-grid">
+    <div class="project-card animate">
+      <img src="https://picsum.photos/400/250?random=3" alt="Portfolio Site" class="project-img" loading="lazy">
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+        </div>
+        <h3>Modern Portfolio</h3>
+        <p>Responsive personal portfolio with animations, dark mode, and smooth interactions.</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <button class="btn btn-primary" onclick="openProjectModal('portfolio')">Preview</button>
+          <a href="#" class="btn btn-secondary">Live Demo</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card animate">
+      <img src="https://picsum.photos/400/250?random=4" alt="Lab Dashboard" class="project-img" loading="lazy">
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="tag">Web App</span>
+          <span class="tag">Diagnostics</span>
+        </div>
+        <h3>MLT Lab Portal</h3>
+        <p>Professional diagnostics portal showcasing lab services and procedures.</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <button class="btn btn-primary" onclick="openProjectModal('lab')">Preview</button>
+          <a href="index.html" class="btn btn-secondary" target="_blank">View Site</a>
+        </div>
+      </div>
+    </div>
+    <div class="project-card animate">
+      <img src="https://picsum.photos/400/250?random=5" alt="WhatsApp Form" class="project-img" loading="lazy">
+      <div class="project-content">
+        <div class="project-tags">
+          <span class="tag">Form</span>
+          <span class="tag">Integration</span>
+        </div>
+        <h3>WhatsApp Contact Form</h3>
+        <p>Seamless contact form integration with WhatsApp Web API.</p>
+        <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+          <button class="btn btn-primary" onclick="openProjectModal('whatsapp')">Preview</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Let's Connect</h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="info-item">
+        <i class="fas fa-envelope" style="font-size: 1.5rem; color: var(--accent);"></i>
+        <div>
+          <strong>Email</strong>
+          <div>yogitabansal524@gmail.com</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-phone" style="font-size: 1.5rem; color: var(--accent);"></i>
+        <div>
+          <strong>Phone</strong>
+          <div>+91 98765 43210</div>
+        </div>
+      </div>
+      <div class="info-item">
+        <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; color: var(--accent);"></i>
+        <div>
+          <strong>Location</strong>
+          <div>Haryana, India</div>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" required aria-label="Name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" required aria-label="Email">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" required aria-label="Message"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%;">
+        <i class="fas fa-paper-plane"></i> Send Message
+      </button>
+      <div id="form-message"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2024 Yogita. Made with ❤️ for the web.</p>
+  <div class="social-links">
+    <a href="https://linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="#" onclick="sendWhatsApp()" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+</footer>
+
+<button id="back-to-top" title="Back to Top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Project Modal -->
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <button class="close-modal" aria-label="Close">&times;</button>
+    <div id="projectContent"></div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Loading screen
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('loading').classList.add('hidden');
+      document.body.classList.add('loaded');
+    }, 500);
+  });
+
+  // Theme toggle
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  themeToggle.addEventListener('click', () => {
+    body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
+    themeToggle.querySelector('i').className = body.dataset.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    localStorage.setItem('theme', body.dataset.theme);
+  });
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    body.dataset.theme = savedTheme;
+    themeToggle.querySelector('i').className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  }
+
+  // Mobile nav
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    hamburger.classList.toggle('active');
+  });
+
+  // Nav active on scroll
+  const navLinksArr = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    document.querySelectorAll('section').forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (scrollY >= sectionTop - 200) current = section.getAttribute('id');
+    });
+    navLinksArr.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+    });
+  });
+
+  // Smooth reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate');
+        if (entry.target.classList.contains('project-card')) {
+          entry.target.style.animationDelay = Math.random() * 0.3 + 's';
+        }
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.project-card, .timeline-item').forEach(el => observer.observe(el));
+
+  // Stats counter
+  function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = target / 100;
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(animateCounters, 20);
+      } else counter.innerText = target;
+    });
+  }
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  });
+  document.querySelector('.stats-grid')?.parentElement && statsObserver.observe(document.querySelector('.stats-grid').parentElement);
+
+  // Skills progress
+  const skillsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        document.querySelectorAll('.skill-fill').forEach(fill => {
+          fill.style.width = fill.dataset.width;
+        });
+        skillsObserver.unobserve(entry.target);
+      }
+    });
+  });
+  document.getElementById('skills') && skillsObserver.observe(document.getElementById('skills'));
+
+  // Typewriter effect - fixed for HTML
+  const typewriterEl = document.querySelector('[data-typewriter]');
+  if (typewriterEl) {
+    typewriterEl.innerHTML = '';
+    const fullText = "Hello, I'm Yogita";
+    let i = 0;
+    function type() {
+      if (i < fullText.length) {
+        typewriterEl.textContent += fullText.charAt(i);
+        i++;
+        setTimeout(type, 80);
+      } else {
+        // Add accent class to "Yogita" after typing
+        const span = document.createElement('span');
+        span.className = 'hero-accent';
+        span.textContent = 'Yogita';
+        typewriterEl.innerHTML = typewriterEl.textContent.replace('Yogita', '') + span.outerHTML;
+      }
+    }
+    setTimeout(type, 500);
+  }
+
+  // Form handling
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const button = form.querySelector('button');
+    const messageEl = document.getElementById('form-message');
+    const originalText = button.innerHTML;
+
+    // Simulate submission (replace with EmailJS/Netlify)
+    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    button.disabled = true;
+
+    setTimeout(() => {
+      messageEl.textContent = 'Message sent successfully! 🎉';
+      messageEl.style.background = 'rgba(34,197,94,0.1)';
+      messageEl.style.color = '#16a34a';
+      messageEl.style.border = '1px solid #86efac';
+      messageEl.style.display = 'block';
+      form.reset();
+      button.innerHTML = originalText;
+      button.disabled = false;
+      sendWhatsApp(); // Optional fallback
+    }, 1500);
+  });
+
+  // Back to top
+  const backToTop = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('show', window.scrollY > 500);
+  });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Modal handling
+  window.openProjectModal = function(type) {
+    const modal = document.getElementById('projectModal');
+    const content = document.getElementById('projectContent');
+    const projects = {
+      portfolio: '<h2>Portfolio Website</h2><p>Full source code and live demo available.</p><img src="https://picsum.photos/600/400?random=3" alt="Screenshot" style="width:100%;border-radius:var(--radius);margin:1rem 0;">',
+      lab: '<h2>MLT Lab Portal</h2><p>Advanced diagnostics site with modals and forms.</p><img src="https://picsum.photos/600/400?random=4" alt="Screenshot" style="width:100%;border-radius:var(--radius);margin:1rem 0;">',
+      whatsapp: '<h2>WhatsApp Integration</h2><p>Form data sent directly to WhatsApp.</p>'
+    };
+    content.innerHTML = projects[type] || '<p>Project details coming soon.</p>';
+    modal.classList.add('show');
+  };
+
+  window.closeModal = function() {
+    document.getElementById('projectModal').classList.remove('show');
+  };
+
+  // WhatsApp
+  window.sendWhatsApp = function() {
+    const name = document.getElementById('name')?.value || '';
+    const email = document.getElementById('email')?.value || '';
+    const message = document.getElementById('message')?.value || 'Hello!';
+    const text = `Hi Yogita! ${name ? `I am ${name}` : ''}${email ? ` (${email})` : ''}: ${message}`;
+    window.open(`https://wa.me/919876543210?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  // Close modal on outside click
+  document.getElementById('projectModal').addEventListener('click', (e) => {
+    if (e.target.classList.contains('modal')) closeModal();
+  });
+});
+</script>
+</body>
+</html>
