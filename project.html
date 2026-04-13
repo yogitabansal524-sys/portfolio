@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yogita MLT Pro | Premium Diagnostics Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --accent: #2563eb;
+            --accent-hover: #1d4ed8;
+            --accent-glow: rgba(37, 99, 235, 0.1);
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-sub: #64748b;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; }
+        body { background: var(--bg); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 5px var(--accent-glow); }
+            50% { box-shadow: 0 0 20px var(--accent-glow); }
+        }
+        .animate-fade { opacity: 0; animation: fadeInUp 0.8s ease forwards; }
+        .animate-slide { opacity: 0; animation: slideInLeft 0.8s ease forwards; }
+        .pulse { animation: pulseGlow 2s infinite; }
+        .hero { position: relative; }
+        .hero-content h1 { animation: fadeInUp 1.5s ease 0.2s both; }
+        .hero-content p { animation: fadeInUp 1.5s ease 0.5s both; }
+        .gallery-item:hover img { transform: scale(1.05); transition: transform 0.3s ease; }
+
+        .bg-pattern {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(#cbd5e1 0.5px, transparent 0.5px);
+            background-size: 30px 30px;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            padding: 15px 8%;
+            display: flex; justify-content: space-between; align-items: center;
+            position: fixed; width: 100%; top: 0; z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--accent); letter-spacing: -0.5px; }
+        .theme-btn {
+            background: none; border: 1px solid var(--border); color: var(--text-sub);
+            font-size: 1.4rem; cursor: pointer; padding: 8px; border-radius: 50%;
+            transition: all 0.3s; margin-left: 15px; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;
+        }
+        .theme-btn:hover { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); transform: scale(1.05); }
+        .nav-links a {
+            color: var(--text-sub); text-decoration: none; margin-left: 25px;
+            font-weight: 600; transition: 0.3s; font-size: 0.85rem; text-transform: uppercase;
+        }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Hero Section */
+        .hero {
+            height: 70vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 0 5%; margin-top: 80px;
+        }
+        .hero-content h1 { font-size: clamp(2rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero-content h1 span { color: var(--accent); }
+        .hero-content p { font-size: 1.2rem; color: var(--text-sub); max-width: 650px; margin: 0 auto; }
+
+        /* Global Sections */
+        section { padding: 80px 8%; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 40px; font-weight: 800; color: var(--text-main); }
+
+        /* About Section */
+        #about {
+            background: var(--card-bg);
+            border-radius: 40px;
+            margin: 20px 8%;
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+        .about-text h3 { color: var(--accent); font-size: 1.8rem; margin-bottom: 15px; }
+        .about-text p { color: var(--text-sub); line-height: 1.8; font-size: 1.1rem; margin-bottom: 15px; }
+
+        .services-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+        .chip {
+            background: #eff6ff; color: var(--accent); padding: 8px 16px;
+            border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+            border: 1px solid #dbeafe;
+        }
+
+        /* Gallery */
+        #gallery { background: var(--bg); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .gallery-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; }
+
+        /* FAQ */
+        #faq { background: var(--card-bg); border-radius: 40px; margin: 20px 8%; }
+        .faq-item { margin-bottom: 20px; }
+        .faq-question { background: #f8fafc; padding: 15px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+        .faq-answer { display: none; padding: 15px; color: var(--text-sub); }
+
+        /* Testimonials */
+        #testimonials { background: var(--bg); }
+        .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
+        .testimonial-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 25px; border-radius: 24px; text-align: center;
+        }
+        .testimonial-card img { width: 60px; height: 60px; border-radius: 50%; margin-bottom: 15px; }
+        .testimonial-card p { color: var(--text-sub); font-style: italic; margin-bottom: 15px; }
+        .testimonial-card cite { font-weight: 600; color: var(--accent); }
+
+        /* Test Grid */
+        .test-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .test-card {
+            background: var(--card-bg); border: 1px solid var(--border);
+            padding: 35px; border-radius: 24px; transition: 0.4s;
+        }
+        .test-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 15px 30px var(--accent-glow); }
+        .test-card h3 { font-size: 1.4rem; margin-bottom: 12px; color: var(--accent); }
+        .test-card p { color: var(--text-sub); font-size: 0.95rem; margin-bottom: 20px; }
+
+        .btn-action {
+            background: var(--accent); color: white; border: none; padding: 12px 20px;
+            border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.3s; width: 100%;
+        }
+        .btn-action:hover { background: var(--accent-hover); transform: scale(1.02); }
+
+        /* Contact Section */
+        #contact { background: #f1f5f9; border-radius: 40px; margin: 40px 8%; }
+        .contact-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; }
+        .info-item {
+            margin-bottom: 15px; padding: 15px; background: white;
+            border-radius: 12px; border-left: 5px solid var(--accent);
+        }
+        .contact-form {
+            background: white; padding: 30px; border-radius: 24px;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 12px 15px; border: 1px solid var(--border); border-radius: 10px; outline: none;
+        }
+        .contact-form input:focus, .contact-form textarea:focus { border-color: var(--accent); }
+
+        /* Modal */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.5); z-index: 9999; backdrop-filter: blur(8px);
+            justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background: white; padding: 40px; border-radius: 28px; width: 90%; max-width: 600px;
+            position: relative;
+        }
+        .close-btn { position: absolute; top: 20px; right: 25px; font-size: 24px; cursor: pointer; color: var(--text-sub); }
+        .step-list { list-style: none; margin-top: 20px; }
+        .step-list li { padding: 12px; background: #f8fafc; margin-bottom: 8px; border-radius: 8px; border-left: 4px solid var(--accent); }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-sub: #cbd5e1;
+            --border: #334155;
+        }
+
+        .bg-pattern {
+            background-image: radial-gradient(var(--text-sub) 0.5px, transparent 0.5px);
+        }
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+        }
+        [data-theme="dark"] nav {
+            background: rgba(15, 23, 42, 0.95);
+        }
+        .faq-question {
+            background: var(--card-bg);
+        }
+        [data-theme="dark"] .chip {
+            background: #1e40af;
+            border-color: #60a5fa;
+            color: white;
+        }
+        .chip {
+            background: #eff6ff;
+            border-color: #dbeafe;
+            color: var(--accent);
+        }
+
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border); color: var(--text-sub); }
+        footer a { color: var(--accent); text-decoration: none; }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--accent-glow);
+            color: var(--accent);
+            font-size: 1.5rem;
+            transition: 0.3s;
+            text-decoration: none;
+            border: 2px solid var(--accent);
+        }
+        .social-icons a:hover {
+            background: var(--accent);
+            color: white;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-pattern"></div>
+
+    <nav>
+        <div class="logo">✚ YOGITA.LAB_PRO</div>
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle theme">🌙</button>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About Lab</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#faq">FAQ</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#tests">Diagnostics</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Diagnostic <span>Excellence</span> <br>at Your Fingertips</h1>
+            <p>Advanced Medical Laboratory Technology portal for precision analysis and clinical reporting.</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Our Lab</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>Welcome to Yogita MLT Pro</h3>
+                <p>Yogita MLT Pro is a leading diagnostics portal specializing in advanced medical laboratory technology. Established in Haryana, India, we bridge the gap between clinical needs and technological solutions, providing accurate and timely diagnostic services.</p>
+                <p>Our mission is to deliver reliable results through state-of-the-art equipment and expert analysis, ensuring the highest standards in hematology, microbiology, biochemistry, and more.</p>
+                <div class="services-chips">
+                    <span class="chip">Hematology</span>
+                    <span class="chip">Microbiology</span>
+                    <span class="chip">Biochemistry</span>
+                    <span class="chip">Urinalysis</span>
+                    <span class="chip">24/7 Support</span>
+                </div>
+            </div>
+             <img class="about-img" style="display: block; margin: 0 auto; max-width: 100%; height: auto; border-radius: 24px; box-shadow: 0 25px 80px rgba(37,99,235,0.25);" src="https://images.pexels.com/photos/3735707/pexels-photo-3735707.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Lab Scientist">
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2>Laboratory Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/356040/pexels-photo-356040.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Microscope">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/3735709/pexels-photo-3735709.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Analysis">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/3825368/pexels-photo-3825368.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Blood Lab">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Technology">
+            </div>
+        </div>
+    </section>
+
+
+    <section id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">What services do you offer?</div>
+            <div class="faq-answer">We provide hematology, microbiology, biochemistry, and urinalysis diagnostics.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">How long do results take?</div>
+            <div class="faq-answer">Most results are available within 24 hours.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleFAQ(this)">Do you offer home collection?</div>
+            <div class="faq-answer">Yes, we provide home sample collection services.</div>
+        </div>
+    </section>
+    <section id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="Doctor">
+            <p>"Accurate and timely diagnostics. Highly recommend!"</p>
+            <cite>- Dr. Sharma</cite>
+        </div>
+        <div class="testimonial-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/2785/2785544.png" alt="Lab Technician">
+            <p>"Professional service with cutting-edge technology."</p>
+            <cite>- Lab Tech Patel</cite>
+        </div>
+        <div class="testimonial-card">
+            <img src="https://cdn-icons-png.flaticon.com/512/4320/4320371.png" alt="Hospital Staff">
+            <p>"Reliable results for all our medical needs."</p>
+            <cite>- Hospital Admin</cite>
+        </div>
+    </div>
+</section>
+
+    <section id="tests">
+        <h2>Laboratory Services</h2>
+        <div class="test-grid">
+            <div class="test-card">
+                <h3>Staining</h3>
+                <p>Microbiological staining for cellular identification.</p>
+                <button class="btn-action" onclick="openModal('staining')">Analyze Procedure</button>
+            </div>
+            <div class="test-card">
+                <h3>Protein</h3>
+                <p>Quantitative analysis of serum protein concentrations.</p>
+                <button class="btn-action" onclick="openModal('protein')">Analyze Procedure</button>
+            </div>
+            <div class="test-card">
+                <h3>Blood</h3>
+                <p>Complete Hematological screening and morphology study.</p>
+                <button class="btn-action" onclick="openModal('blood')">Analyze Procedure</button>
+            </div>
+            <div class="test-card">
+                <h3>Urine</h3>
+                <p>Comprehensive physical and chemical urinalysis.</p>
+                <button class="btn-action" onclick="openModal('urine')">Analyze Procedure</button>
+            </div>
+            <div class="test-card stool-card">
+    <h3>Stool Examination</h3>
+    <p>Comprehensive analysis of stool for parasites, infections, and digestive disorders.</p>
+
+    <div class="stool-details">
+        <ul>
+            <li>Sample collection in sterile container</li>
+            <li>Physical examination (color, consistency)</li>
+            <li>Chemical tests (occult blood, pH)</li>
+            <li>Final diagnostic report</li>
+        </ul>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Connect with our Lab</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-item"><strong>📍 Location:</strong> Haryana, India</div>
+                <div class="info-item"><strong>📧 Email:</strong> yogitabansal524@gmail.com</div>
+                <div class="info-item"><strong>🕒 Working Hours:</strong> 24/7 Support</div>
+                <div class="info-item"><strong>📱 Contact Us:</strong></div>
+                <div class="social-icons">
+                    <a href="https://wa.me/+8168890184text=Hi%20Yogita%20Lab!%20Need%20help%20with%20diagnostics." target="_blank" title="WhatsApp Chat">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.instagram.com/official_queen_1905/" target="_blank" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="mailto:yogitabansal524@gmail.com?subject=Lab%20Inquiry" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required aria-label="Name">
+                <input type="email" id="email" placeholder="Email Address" required aria-label="Email">
+                <textarea id="message" placeholder="How can we help you?" rows="4" required aria-label="Message"></textarea>
+                <button type="submit" class="btn-action">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <div id="testModal" class="modal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()" aria-label="Close">&times;</span>
+            <h2 id="modalTitle" style="text-align: left; font-size: 1.8rem; color: var(--accent);"></h2>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Developed by Chetan | Hartron Skill Project | MLT Specialist | <a href="#home">Back to Top</a></p>
+    </footer>
+
+
+    <script>
+        // Scroll animations observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade');
+                    entry.target.style.animationDelay = Math.random() * 0.3 + 's'; // stagger
+                }
+            });
+        }, observerOptions);
+
+        // Observe sections
+        document.querySelectorAll('section h2, .test-card, .testimonial-card, .gallery-item, .about-content, .faq-item').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Parallax hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Pulse on CTA buttons
+        document.querySelectorAll('.btn-action').forEach(btn => {
+            btn.classList.add('pulse');
+        });
+
+        const procedures = {
+
+            staining: { title: "Staining Protocol", body: "<ul class='step-list'><li>Prepare bacterial smear.</li><li>Apply Crystal Violet.</li><li>Add Gram's Iodine.</li><li>Decolorize with Ethanol.</li><li>Counterstain with Safranin.</li></ul>" },
+            protein: { title: "Protein Assay", body: "<ul class='step-list'><li>Centrifuge serum at 3000 RPM.</li><li>Add Biuret reagent.</li><li>Incubate for 10 minutes.</li><li>Measure at 540nm.</li></ul>" },
+            blood: { title: "Hematology (CBC)", body: "<ul class='step-list'><li>Collect EDTA blood sample.</li><li>Homogenize on roller.</li><li>Automated flow cytometry.</li><li>Manual smear verification.</li></ul>" },
+            urine: { title: "Urinalysis Process", body: "<ul class='step-list'><li>Physical examination.</li><li>Reagent strip chemistry.</li><li>Sediment centrifugation.</li><li>Microscopic study.</li></ul>" }
+        };
+
+        function openModal(test) {
+            document.getElementById('modalTitle').innerText = procedures[test].title;
+            document.getElementById('modalBody').innerHTML = procedures[test].body;
+            document.getElementById('testModal').style.display = 'flex';
+            document.getElementById('testModal').setAttribute('aria-hidden', 'false');
+        }
+        function closeModal() {
+            document.getElementById('testModal').style.display = 'none';
+            document.getElementById('testModal').setAttribute('aria-hidden', 'true');
+        }
+
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Form validation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            if (name && email && message) {
+                alert('Message Sent!');
+                this.reset();
+            } else {
+                alert('Please fill all fields.');
+            }
+        });
+
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            themeToggle.textContent = theme === 'dark' ? '🌞' : '🌙';
+        }
+
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+        setTheme(initialTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme');
+            const newTheme = current === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    </script>
+</body>
+</html>
